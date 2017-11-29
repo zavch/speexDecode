@@ -20,7 +20,7 @@ public class NativeUtils {
 		if(arch != null && suffix != null) {
 			StringBuffer buffer = new StringBuffer();
 			buffer.append(arch);
-			buffer.append(File.separator);
+			buffer.append("/");
 			buffer.append(FILENAME);
 			buffer.append(suffix);
 			return buffer.toString();

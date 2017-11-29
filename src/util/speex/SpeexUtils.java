@@ -15,10 +15,10 @@ public class SpeexUtils {
 		String resource = NativeUtils.getResource();
 		if(resource != null) {
 			try { 
-				InputStream in =  SpeexUtils.class.getClassLoader().getResourceAsStream(resource);
+				InputStream in = SpeexUtils.class.getResourceAsStream("/"+resource);
 				File file = File.createTempFile(NativeUtils.FILENAME, NativeUtils.SUFFIX);
 				// 依赖文件
-				InputStream depIn = SpeexUtils.class.getClassLoader().getResourceAsStream(resource.replace(NativeUtils.FILENAME, NativeUtils.DEP_FILENAME));
+				InputStream depIn = SpeexUtils.class.getResourceAsStream("/"+resource.replace(NativeUtils.FILENAME, NativeUtils.DEP_FILENAME));
 				// 依赖库文件与动态库文件在同一个目录下
 				File depFile = new File(file.getParent()+File.separator+NativeUtils.DEP_FILENAME+NativeUtils.SUFFIX);
 				writeStreamToFile(in, file);
@@ -76,14 +76,5 @@ public class SpeexUtils {
 				}
 			}
 		}
-	}
-	public static void main(String[] args) {
-		if(OS.LINUX.equals(NativeUtils.getOS())){
-			SpeexUtils.decode("/home/xavier/Downloads/a.speex", "/home/xavier/Downloads/a.wav");
-		}
-		if(OS.WIN.equals(NativeUtils.getOS())){
-			SpeexUtils.decode("D:\\a.speex", "D:\\a.wav");
-		}
-		System.out.println("End!");
 	}
 }
